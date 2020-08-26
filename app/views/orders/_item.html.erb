@@ -1,0 +1,21 @@
+
+<% @cart.line_items.each do |i| %>
+
+    <tr>
+      <td>
+        <%= image_tag(i.product.avatar) if i.product.avatar.attached? %>
+      </td>
+      <td>
+        <h4><%= i.product.name %></h4>
+        <br>
+        <p><%= i.product.description %></p>
+      </td>
+      <td>
+        <%= i.quantity.to_i %>
+      </td>
+      <td>
+        <%= i.total_price %>
+      </td>
+    </tr>
+
+    <% end %>

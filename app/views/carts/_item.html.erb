@@ -1,0 +1,33 @@
+
+<% quantity = line_item.quantity.to_i %>
+
+<% if product = Product.find_by(id: line_item.product_id) %>
+  <% item_total = product.price.to_f * quantity %>
+  <% @cart_total += item_total %>
+
+  <tr>
+    <td>
+      <%= image_tag(product.avatar) if product.avatar.attached? %>
+    </td>
+    <td>
+      <h4><%= product.name %></h4>
+      <br>
+      <p><%= product.description %></p>
+    </td>
+    <td>
+      $<%= product.price %>
+    </td>
+    <td>
+      <%= link_to remove_item_cart_path(product_id: product.id), class: 'btn btn-xs btn-danger', method: :delete do %>
+        -
+      <% end %>
+      <%= quantity %>
+      <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-xs btn-success', method: :put do %>
+        +
+      <% end %>
+    </td>
+    <td>
+      $<%= item_total %>
+    </td>
+  </tr>
+<% end %>

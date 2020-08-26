@@ -1,0 +1,30 @@
+<div class="col-lg-12">
+  <div class="container">
+    <h2>Welcome to Gift ideas!</h2>
+    <small>Find your best matching gift, good luck!</small>
+  </div>
+
+<h2>Products<%= link_to "Add New Product", new_product_path, class: "pull-right btn btn-primary" %></span></h2>
+
+  <%= form_tag('/products', :remote => false, :method => :get) do %>
+    <div class="col-lg-8 form-group">
+      <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"),  { :prompt => 'Select Category', class: "form-control" } %>
+    </div>
+    <div class="col-lg-8 form-group">
+      <%= submit_tag 'Filter', class: "btn btn-primary pull-right " %>
+    </div>
+  <% end %>
+</div>
+<div class="col-lg-12">
+<% @products.each do |product| %>
+  <div class="col-lg-3 center-block " >
+    <%= image_tag(product.avatar) if product.avatar.attached? %>
+    <div class="product_description">
+     <%= link_to "#{product.name}", product_path(product) %>
+     <p><%= product.description %></p>
+     <p class="price"> <%= number_to_currency product.price %></p>
+    </div>
+  </div>
+  <hr></hr>
+<% end %>
+</div>

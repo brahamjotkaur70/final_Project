@@ -1,0 +1,19 @@
+
+<% @orders.each do |order| %>
+<table>
+    <th>#</th>
+    <th>Total price</th>
+    <th></th>
+    <th>Time</th>
+    <tr>
+      <td></td>
+      <td>
+        <%= order.total_price %>
+      </td>
+      <td></td>
+      <td>
+        <%= order.created_at %>
+      </td>
+    </tr>
+</table>
+    <% end %>
