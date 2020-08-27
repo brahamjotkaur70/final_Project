@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 
+ 
   def index
     @products = Product.all.order(created_at: :desc)
     @categories = Category.all.order(:name)
@@ -41,6 +42,21 @@ class ProductsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
+    @product = Product.find params[:id]
+  end
+
+  def destroy
+    @product = Product.find params[:id]
+    @product.destroy
+    flash[:danger] = "Product has been deleted."
+    redirect_to [:products]
+  end
+
+  def product_params
+    params.require(:product).permit(:name, :description, :avatar, :price, :quantity, :category_id, :user_id)
   end
 
   def show

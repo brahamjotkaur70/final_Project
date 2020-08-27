@@ -1,14 +1,16 @@
- <div class="container">
-  <div class="product">
-    <div class="product-body">
-      <h1 class="product-name"><%= @product.name %></h1>
-      <div><%= image_tag(@product.avatar) if @product.avatar.attached? %> </div>
-      <h2 class="product-quantity"><%= @product.quantity %></h2>
-      <p class="text-primary">Price: <%= number_to_currency(@product.price, precision: 2) %></p>
-      <p class="product-text">Description: <%= @product.description %></p>
-      <%= link_to "+Add to Cart","/line_items?product_id=#{@product.id}",:method => :post, class: "btn btn-success" %>
+<div class="container">
+<div class="product">
+  <div class="product-body">
+    <h1 class="product-name"><%= @product.name %></h1>
+    <div><%= image_tag(@product.avatar) if @product.avatar.attached? %> </div>
+    <h2 class="product-quantity"><%= @product.quantity %></h2>
+    <p class="text-primary">Price: <%= number_to_currency(@product.price, precision: 2) %></p>
+    <p class="product-text">Description: <%= @product.description %></p>
+    <%= link_to "+Add to Cart","/line_items?product_id=#{@product.id}",:method => :post, class: "btn btn-success" %>
+    <% if current_user.id == @product.id %>
       <%= link_to "Edit",edit_product_path(@product),:method => :get, class: "btn btn-warning" %>
       <%= link_to "Delete",(@product),:method => :delete, class: "btn btn-danger", data: {confirm: "Are you sure?"} %>
-    </div>
+    <% end %>
   </div>
+</div>
 </div>

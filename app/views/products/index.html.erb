@@ -1,27 +1,28 @@
 <div class="col-lg-12">
-  <div class="container">
-    <h2>Welcome to Gift ideas!</h2>
-    <small>Find your best matching gift, good luck!</small>
-  </div>
+<div class="container">
+<h2>Welcome to Gift ideas!</h2>
+<small>Find your best matching gift, good luck!</small>
+</div>
+</br>
 <h2> Products </h2>
 
 
 <%= form_tag('/products', :remote => false, :method => :get) do %>
-  <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"),  { :include_blank => true} %>
-  <%= submit_tag 'Filter' %>
+<%= select_tag "category", options_from_collection_for_select(@categories, "id", "name", params[:category]),  { prompt: "Select Category", :include_blank => true, class: "form-control", style: "max-width: 40%"} %>
+<%= submit_tag 'Filter', class: "btn btn-primary" %>
 <% end %>
 <h2><%= link_to "Add New Product", new_product_path, class: "pull-left btn btn-primary" %></span></h2>
 
 <div class="col-lg-12">
 <% @products.each do |product| %>
-  <div class="col-lg-3 center-block " >
-    <%= image_tag(product.avatar) if product.avatar.attached? %>
-    <div class="product_description">
-    <h2> <%= link_to "#{product.name}", product_path(product) %></h2>
-     <p><%= product.description %></p>
-     <p class="price"> <%= number_to_currency product.price %></p>
-    </div>
-  </div>
-  <hr></hr>
+<div class="col-lg-3 center-block " >
+<%= image_tag(product.avatar) if product.avatar.attached? %>
+<div class="product_description">
+<h2> <%= link_to "#{product.name}", product_path(product) %></h2>
+ <p><%= product.description %></p>
+ <p class="price"> <%= number_to_currency product.price %></p>
+</div>
+</div>
+<hr></hr>
 <% end %>
 </div>

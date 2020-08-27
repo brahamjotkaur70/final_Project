@@ -1,5 +1,5 @@
 <% if @product.errors.any? %>
-    <ul>
+   <ul>
         <% @product.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
         <% end %>
@@ -27,7 +27,7 @@
     <%= f.label :quantity %>
     <%= f.number_field :quantity, class: "form-control" %>
 </div>
-
+<%= hidden_field_tag 'product[user_id]', current_user.id %>
     <div class="form-group">
         <%= f.label :price %>
         <%= f.number_field :price, class: "form-control" %>

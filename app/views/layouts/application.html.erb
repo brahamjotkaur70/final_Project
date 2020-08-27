@@ -17,16 +17,17 @@
 
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-
-      <h3>
+      <% if !devise_controller? %>
         <%=link_to "Home", products_path  %>
      
         <%=link_to "Products", products_path  %>
         <%=link_to "Categories", categories_path  %>
         <%=link_to "My Orders", orders_path  %>
-        <%=link_to "Sign in", login_path %>
-        <%=link_to "Register", register_path  %>
-      </h3>
+        <span class="pull-right"><%=link_to "Log Out", destroy_user_session_path, method: :delete %></span>
+      <% else %>
+      <%=link_to "Sign in", new_user_session_path %>
+      <%=link_to "Register", new_user_registration_path  %>
+      <% end %>
 
 
       </div>
