@@ -17,7 +17,7 @@
   <div class="col-lg-3 center-block " >
     <%= image_tag(product.avatar) if product.avatar.attached? %>
     <div class="product_description">
-     <%= link_to "#{product.name}", product_path(product) %>
+    <h2> <%= link_to "#{product.name}", product_path(product) %></h2>
      <p><%= product.description %></p>
      <p class="price"> <%= number_to_currency product.price %></p>
     </div>
