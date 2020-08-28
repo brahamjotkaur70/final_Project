@@ -3,7 +3,7 @@
     <h4><%= category.name %></h4>
   </td>
   <td>
-  <%= link_to "DELETE CATEGORY",(@category),:method => :delete, class: "btn btn-danger" %>
+  <%= link_to "DELETE CATEGORY",category_path(category),method: :delete, class: "btn btn-danger",data: {confirm: "Are you sure?"} %>
   </td>
 
 </tr>
